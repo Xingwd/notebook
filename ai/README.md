@@ -1,4 +1,4 @@
-# Data Science
+# AI
 
 ## Jupyter
 
