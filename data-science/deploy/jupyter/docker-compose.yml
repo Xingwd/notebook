@@ -1,0 +1,46 @@
+version: "3.8"
+services:
+  pytorch-notebook:
+    image: quay.io/jupyter/pytorch-notebook:latest
+    container_name: jupyter-pytorch-notebook
+    restart: unless-stopped
+    ports:
+      - "10000:8888"
+    command:
+      - start.sh
+      - jupyter
+      - lab
+      - --ServerApp.root_dir=/home/jovyan/work  # 指定根目录参数
+      - --ServerApp.token=025e2f5f631cf438fce9c01cfe1d6c92f86786a8f343f879
+    volumes:
+      - ./pytorch-work:/home/jovyan/work
+
+  tensorflow-notebook:
+    image: quay.io/jupyter/tensorflow-notebook:latest
+    container_name: jupyter-tensorflow-notebook
+    restart: unless-stopped
+    ports:
+      - "10001:8888"
+    command:
+      - start.sh
+      - jupyter
+      - lab
+      - --ServerApp.root_dir=/home/jovyan/work  # 指定根目录参数
+      - --ServerApp.token=025e2f5f631cf438fce9c01cfe1d6c92f86786a8f343f879
+    volumes:
+      - ./tensorflow-work:/home/jovyan/work
+
+  scipy-notebook:
+    image: quay.io/jupyter/scipy-notebook:latest
+    container_name: jupyter-scipy-notebook
+    restart: unless-stopped
+    ports:
+      - "10002:8888"
+    command:
+      - start.sh
+      - jupyter
+      - lab
+      - --ServerApp.root_dir=/home/jovyan/work  # 指定根目录参数
+      - --ServerApp.token=025e2f5f631cf438fce9c01cfe1d6c92f86786a8f343f879
+    volumes:
+      - ./scipy-work:/home/jovyan/work
