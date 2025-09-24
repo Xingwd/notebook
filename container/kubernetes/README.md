@@ -1,4 +1,4 @@
-# Kubernetes Python Client使用笔记
+# Kubernetes Python客户端
 
 参考资料：
 
