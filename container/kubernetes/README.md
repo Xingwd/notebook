@@ -120,6 +120,8 @@ kubectl create rolebinding xwd-pod-reader-binding --role=pod-reader --user=xwd -
 
 ### 创建ServiceAccount Token
 
+> 当`Token`用于外部服务时，可以设置较长的有效期。
+
 ```shell
 kubectl create token xwd -n default --duration 867240h
 ```
