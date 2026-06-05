@@ -1,0 +1,12 @@
+services:
+  grafana:
+    image: grafana/grafana-enterprise:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "9000:3000"
+    environment:
+      GF_SERVER_ROOT_URL: http://10.111.119.188:9000
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+      - /etc/localtime:/etc/localtime:ro
