@@ -10,5 +10,9 @@
     "max-size": "200m"
   },
   "insecure-registries": ["registry:6000"],
-  "registry-mirrors" : []
+  "registry-mirrors" : [
+    "https://docker.m.daocloud.io",
+    "https://hub.mirrorify.net",
+    "https://docker.xuanyuan.me"
+  ]
 }
