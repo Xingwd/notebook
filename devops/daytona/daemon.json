@@ -1,0 +1,14 @@
+{
+  "log-opts": {
+    "cache-disabled": "false",
+    "cache-max-file": "5",
+    "cache-max-size": "200m",
+    "cache-compress": "true",
+    "env": "os,customer",
+    "labels": "somelabel",
+    "max-file": "5",
+    "max-size": "200m"
+  },
+  "insecure-registries": ["registry:6000"],
+  "registry-mirrors" : []
+}
