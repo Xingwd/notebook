@@ -63,3 +63,33 @@ docker compose up -d
 4. 本地已经有镜像并不会跳过 registry 检查。如果 runner 访问不了 Docker Hub，或者 daytonaio/sandbox:0.5.0-slim 这个 tag 在 Docker Hub 上根本不存在，作业就会一直挂起，最终报错。
 
 本部署已将 `DEFAULT_SNAPSHOT` 设置为 `registry:6000/daytona/sandbox:0.8.0-slim`，这样就会从 daytona registry 服务 pull 镜像，不会触发 Docker Hub Registry 连接检查。
+
+### 使用 Daytona CLI
+
+安装说明：<https://www.daytona.io/docs/en/tools/cli/#installation>
+
+安装好的 Daytona CLI，API URL 默认是 Daytona 云服务地址，可以通过设置环境变量，连接到自定义部署的 Daytona 服务：
+
+```shell
+export DAYTONA_API_URL="http://localhost:3000/api"
+export DAYTONA_API_KEY="dtn_38c36a550258f96793548db6f73fbf8410e0a72234b84df61e50ea592d191d5c"
+```
+
+### 删除 System Type 的 Snapshot
+
+在 dashboard 中，无法删除 System Type 的 Snapshot，必须将 Snapshot 的 System 标记移除，才可以删除，而只有 ADMIN 权限，才能移除 System 标记。
+
+本部署默认配置了 ADMIN_API_KEY，可用于 API 服务认证。
+
+在浏览器访问 <http://localhost:3000/api>，进入 Swagger 页面，使用 ADMIN_API_KEY 进行认证，通过 `/api/admin/snapshots/{id}/general` 接口移除指定 Snapshot 的 System 标记。
+
+或者通过其他接口操作方式进行操作，示例：
+
+```shell
+export ADMIN_API_KEY="..."  # 部署时配置的 ADMIN_API_KEY
+curl -X PATCH \
+  -H "Authorization: Bearer $ADMIN_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"general": false}' \
+  https://<api>/api/admin/snapshots/{snapshot_id}/general
+```
